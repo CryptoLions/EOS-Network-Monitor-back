@@ -16,6 +16,4 @@ ENV PORT 3000
 EXPOSE 3000
 EXPOSE 3001
 
-CMD [ "npm", "start" ]
-
-#CMD ["pm2-runtime", "--raw", "ecosystem.config.js", "--env", "sandbox"]
+CMD [ "npm", "startAPP" ]
