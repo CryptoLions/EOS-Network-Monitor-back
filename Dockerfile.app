@@ -16,4 +16,4 @@ ENV PORT 3000
 EXPOSE 3000
 EXPOSE 3001
 
-CMD [ "npm", "startAPP" ]
+CMD [ "npm", "run", "startAPP" ]

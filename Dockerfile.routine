@@ -10,4 +10,4 @@ RUN cd /www && npm install
 
 # set env variables
 
-CMD [ "npm", "startROUTINE" ]
+CMD [ "npm", "run", "startROUTINE" ]
