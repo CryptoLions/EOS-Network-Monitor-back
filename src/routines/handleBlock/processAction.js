@@ -1,5 +1,5 @@
 const uniq = require('lodash/uniq');
-const { eosApi, createLogger } = require('../../helpers');
+const { eosApi, createLogger, castToString } = require('../../helpers');
 
 const { info: logInfo } = createLogger();
 
@@ -477,6 +477,10 @@ const processAction = ({ block_num, transaction, id, producer, withSubActions = 
       txInfo.msgObject.c6 = 'TOTAL: ERROR EOS';
     }
   }
+  txInfo.msgObject = Object.keys(txInfo.msgObject).reduce((res, key) => ({
+    ...res,
+    [key]: castToString(txInfo.msgObject[key]),
+  }), {});
   result.txInfo = txInfo;
   result.accounts = txInfo.mentionedAccounts;
   return withSubActions ? [result, ...processedSubActions] : result;

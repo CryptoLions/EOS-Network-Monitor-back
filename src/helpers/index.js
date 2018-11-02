@@ -5,6 +5,7 @@ const { createLogger } = require('./logger');
 const createEosApi = require('./createEosApi');
 
 const castToInt = require('./castToNumber');
+const castToString = require('./castToString');
 
 const pickAs = require('./pickAs');
 
@@ -25,6 +26,7 @@ module.exports = {
   createEosApi,
   eosApi: createEosApi(),
   castToInt,
+  castToString,
   pickAs,
   setSensitiveInterval,
   watchForServerResources,
