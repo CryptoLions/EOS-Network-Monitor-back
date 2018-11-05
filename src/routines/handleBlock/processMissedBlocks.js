@@ -13,7 +13,7 @@ const process = async ({ current, previous }) => {
     const producer = await ProducerModelV2
       .findOne({ name: current.producer })
       .select('lastLoopHeadBlockNumber blocksLeftInLastLoop');
-    if (!producer.lastLoopHeadBlockNumber && previous.producer === current.producer) {
+    if (!producer || (!producer.lastLoopHeadBlockNumber && previous.producer === current.producer)) {
       // When producer does not have data about his head loop blocks,
       // and previous block has been produced by this producer
       // We can not say which block is head for this producer loop, and can not count missed blocks
