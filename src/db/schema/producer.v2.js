@@ -55,6 +55,7 @@ const Producer = new Schema({
     isWorking: { type: Boolean, default: false },
     server_version: String,
   }],
+  bpData: {},
 }, { collection: 'Producer' });
 
 module.exports = Producer;
