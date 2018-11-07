@@ -55,6 +55,7 @@ const createStorage = () => {
         'votesInEOS',
         'blackListHash',
         'isNode',
+        'bpData',
         'nodes',
         'specialNodeEndpoint',
         'rewards_per_day',

@@ -173,14 +173,13 @@ const init = ({ app, handlers }) => {
       const { producerName } = req.params;
       const producer = await ProducerModelV2
         .findOne({ name: producerName })
-        .select('url')
+        .select('bpData')
         .exec();
-      if (!producer || !producer.url) {
+      if (!producer || !producer.bpData) {
         res.status(200).send({});
         return;
       }
-      const info = await request({ url: `${producer.url}/bp.json`, json: true, timeout: 30000 });
-      res.status(200).send(info);
+      res.status(200).send(producer.bpData);
     } catch (e) {
       res.status(500).send('Internal Server Error');
     }

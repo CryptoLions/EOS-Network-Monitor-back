@@ -45,6 +45,7 @@ const getProducersInfo = async () => {
       expectedIncomeData
       endpoints
       blackListHash
+      bpData
       nodes
       nodes._id
       nodes.enabled

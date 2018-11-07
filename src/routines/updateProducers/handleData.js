@@ -128,6 +128,7 @@ const handleData = async producers => {
           last_claim_time: castToInt(last_claim_time),
           location: `${bpData.org.location.country},${bpData.org.location.name}`,
           blackListHash,
+          bpData,
         });
       }),
   );
