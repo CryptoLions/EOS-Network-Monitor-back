@@ -75,7 +75,8 @@
     "ON_INFO_CHANGE_INTERVAL": 0, // in ms, if 0 calls listener when block info change
     "ON_PRODUCERS_INFO_CHANGE_INTERVAL": 1000, // in ms, if 0 calls listener when table info change
     "ON_TOTAL_STACKED_CHANGE_INTERVAL": 1000, // in ms, if 0 calls listener when total stacked info change
-    "ON_TRANSACTIONS_ADD_INTERVAL": 1000 // must be greater than 0
+    "ON_TRANSACTIONS_ADD_INTERVAL": 1000, // must be greater than 0
+    "ON_UNREGISTEREDS_INTERVAL": 5000 // must be greater than 0
   },
   "API_PREFIX": "/api/v1",
   "BLACK_PRODUCERS_LIST": [{ "key": "EOS1111111111111111111111111111111114T1Anm" }],

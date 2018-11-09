@@ -23,7 +23,7 @@ const startUpdateProducersRoutine = () => {
 
 const startUpdateProducersFastRoutine = () =>
   new CronJob({
-    cronTime: '*/2 * * * * *', // every 2 sec
+    cronTime: '*/5 * * * * *', // every 5 sec
     onTick: updateProducersFast,
     start: true,
   });

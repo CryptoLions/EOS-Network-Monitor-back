@@ -20,7 +20,6 @@ const updateProducer = async producer => {
   if (oldProducerFromDb && oldProducerFromDb.nodes) {
     const producerCopy = {
       ...producer,
-      isActive: true,
       nodes:
       (producer.nodes && producer.nodes.map((node, index) => ({
         ...node,
@@ -32,7 +31,7 @@ const updateProducer = async producer => {
   } else {
     await ProducerModelV2.updateOne(
       { name: producer.name },
-      { $set: { ...producer, isActive: true } }, { upsert: true },
+      { $set: { ...producer } }, { upsert: true },
     ).exec();
   }
 };
@@ -132,8 +131,6 @@ const handleData = async producers => {
       }),
   );
   const result = await promises;
-
-  await ProducerModelV2.updateMany({ name: { $nin: producers.map(p => p.owner) } }, { isActive: false }).exec();
 
   logInfo(`PRODUCERS UPDATE:
   TOTAL NUMBER: ${producers.length}

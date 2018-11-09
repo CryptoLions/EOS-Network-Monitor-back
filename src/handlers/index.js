@@ -6,6 +6,7 @@ const initInfoHandler = require('./info');
 const initAccountHandler = require('./account');
 const initRamHandler = require('./ram');
 const initTheblacklistHandler = require('./theblacklist');
+const initUnregisteredHandler = require('./unregistered');
 
 const init = async () => {
   const userCount = await initUserCountHandler();
@@ -16,6 +17,7 @@ const init = async () => {
   const account = await initAccountHandler();
   const ram = await initRamHandler();
   const theblacklist = await initTheblacklistHandler();
+  const unregistered = await initUnregisteredHandler();
 
   info.onUpdate(infoData => table.setCurrentInfo(infoData));
   return {
@@ -27,6 +29,7 @@ const init = async () => {
     account,
     ram,
     theblacklist,
+    unregistered,
   };
 };
 

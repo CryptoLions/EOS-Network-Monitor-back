@@ -4,7 +4,7 @@ const Node = require('./node.v2');
 const Producer = new Schema({
   name: { type: String, index: true },
   candidateName: { type: String },
-  isActive: { type: Boolean, default: true },
+  isActive: { type: Boolean, default: false, index: true },
   checkedData: { // deprecated
     produced: { type: Number, default: 0 },
     tx_count: { type: Number, default: 0 },
