@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
-mongoose.set('useCreateIndex', true);
 const { MONGODB } = require('config');
+const mongoose = require('mongoose');
+
+mongoose.set('useCreateIndex', true);
 
 const AccountSchemaV2 = require('./schema/account.v2');
 const TransactionSchemaV2 = require('./schema/transaction.v2');
@@ -10,6 +11,7 @@ const TransactionToAccountSchemaV2 = require('./schema/transactionToAccount.v2')
 const TransactionLastHourSchemaV2 = require('./schema/transactionLastHour.v2');
 const BlockSchemaV2 = require('./schema/block.v2');
 const RamSchemaV2 = require('./schema/ram.v2');
+const UnregisteredSchema = require('./schema/unregistered');
 
 const connect = () => {
   const mongooseOptions = {
@@ -39,4 +41,5 @@ module.exports = {
   TransactionLastHourModelV2: mongoose.model('TransactionLastHour', TransactionLastHourSchemaV2),
   BlockModelV2: mongoose.model('Block', BlockSchemaV2),
   RamModelV2: mongoose.model('Ram', RamSchemaV2),
+  UnregisteredModel: mongoose.model('Unregistered', UnregisteredSchema),
 };

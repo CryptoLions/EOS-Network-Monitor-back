@@ -8,6 +8,7 @@ const init = ({ io, handlers }) => {
     transaction: transactionHandler,
     info: infoHandler,
     ram: ramHandler,
+    unregistered: unregisteredHandler,
   } = handlers;
   userCountHandler.onUpdate(userCount => {
     io.to(SOCKET_ROOM).emit('usersonline', userCount);
@@ -33,6 +34,7 @@ const init = ({ io, handlers }) => {
     io.to(SOCKET_ROOM).emit('blockchart', chart);
   });
   ramHandler.onUpdate(ram => io.to(SOCKET_ROOM).emit('ram', ram));
+  unregisteredHandler.onUpdate(unregistereds => io.to(SOCKET_ROOM).emit('unregistereds', unregistereds));
   io.on('connection', socket => {
     socket.join(SOCKET_ROOM);
 
