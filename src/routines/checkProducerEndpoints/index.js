@@ -46,7 +46,7 @@ module.exports = async () => {
     const producers = await ProducerModelV2
       .find({})
       .sort({ total_votes: -1 })
-      .select('name url nodes._id nodes.http_server_address nodes.https_server_address');
+      .select('_id name url nodes._id nodes.http_server_address nodes.https_server_address');
 
     await Promise.all(producers.map(async p => {
       const isSiteAvailable = await checkEndpointAvailability(p.url);
@@ -76,8 +76,8 @@ module.exports = async () => {
         server_version_string: e.server_version_string,
       }));
       nodes.forEach(async n => {
-        ProducerModelV2.updateOne(
-          { name: p.name, 'nodes._id': n._id },
+        ProducerModelV2.update(
+          { _id: p._id, 'nodes._id': n._id },
           { $set: {
             'nodes.$.server_version': n.server_version,
             'nodes.$.server_version_string': n.server_version_string,
