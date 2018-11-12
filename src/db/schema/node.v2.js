@@ -6,8 +6,6 @@ const Node = new Schema({
   enabled: { type: Boolean, default: true },
   http_server_address: { type: String },
   https_server_address: { type: String },
-  server_version_string: { type: String },
-  server_version: { type: String },
   location: { type: String },
   organisation: { type: String, index: true },
   p2p_listen_endpoint: { type: String },

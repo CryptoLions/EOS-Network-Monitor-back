@@ -84,7 +84,7 @@ module.exports = async () => {
           } },
         ).exec();
       });
-      await ProducerModelV2.updateOne({ name: p.name }, { $set: { isSiteAvailable, endpoints } }).exec();
+      await ProducerModelV2.updateOne({ _id: p._id }, { $set: { isSiteAvailable, endpoints } }).exec();
     }));
     logInfo(`Sites and endpoints of producers were checked. Time: ${Date.now() - tsStart}ms`);
   } catch (e) {

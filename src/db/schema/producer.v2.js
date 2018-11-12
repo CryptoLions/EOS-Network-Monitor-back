@@ -54,6 +54,7 @@ const Producer = new Schema({
     endpoint: String,
     isWorking: { type: Boolean, default: false },
     server_version: String,
+    server_version_string: String,
   }],
   bpData: {},
 }, { collection: 'Producer' });
