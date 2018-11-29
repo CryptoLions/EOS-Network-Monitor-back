@@ -34,11 +34,6 @@ const start = async () => {
   if (ENABLE_CORS_SUPPORT) {
     app.use(cors(corsOptionsDelegate(WHITE_LIST)));
   }
-  app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
   try {
     await connectToDb();
     const handlers = await initHandlers();
