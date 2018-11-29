@@ -34,7 +34,7 @@ const start = async () => {
   if (ENABLE_CORS_SUPPORT) {
     app.use(cors(corsOptionsDelegate(WHITE_LIST)));
   } else {
-    app.use(cors({ credentials: true, origin: "*" }));
+    app.use(cors());
   }
   try {
     await connectToDb();
