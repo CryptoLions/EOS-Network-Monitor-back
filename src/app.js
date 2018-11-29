@@ -26,7 +26,7 @@ process.on('uncaughtException', (err) => {
 
 const app = express();
 const http = Server(app);
-const io = createSocketIO(http);
+const io = createSocketIO(http, {origins:'*:*'});
 
 const start = async () => {
   app.use(bugsnag.requestHandler);
