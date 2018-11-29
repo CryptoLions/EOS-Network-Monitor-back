@@ -13,13 +13,13 @@ const corsOptionsDelegate = (whiteList) => (req, callback) => {
   } else {
     origin = '';
   }
-  //if (whiteList.indexOf(origin) !== -1) {
+  if (whiteList.indexOf(origin) !== -1) {
     options = { origin: true };
     error = null;
-  /*} else {
+  } else {
     options = { origin: false };
     error = 'Not allowed';
-  }*/
+  }
   callback(error, options);
 };
 

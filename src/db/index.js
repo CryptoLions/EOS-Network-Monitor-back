@@ -16,6 +16,7 @@ const UnregisteredSchema = require('./schema/unregistered');
 const connect = () => {
   const mongooseOptions = {
     autoIndex: true,
+    useNewUrlParser: true
   };
   if (MONGODB.AUTH_IS_REQUIRED) {
     mongooseOptions.authSource = MONGODB.AUTH_SOURCE;

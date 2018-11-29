@@ -33,6 +33,8 @@ const start = async () => {
   app.use(compression());
   if (ENABLE_CORS_SUPPORT) {
     app.use(cors(corsOptionsDelegate(WHITE_LIST)));
+  } else {
+    app.use(cors({ credentials: true, origin: "*" }));
   }
   try {
     await connectToDb();

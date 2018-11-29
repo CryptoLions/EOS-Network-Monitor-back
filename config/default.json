@@ -4,8 +4,8 @@
     "PORT": "3002"
   },
   "NODE": {
-    "HOST": "http://bp.cryptolions.io",
-    "PORT": "8888",
+    "HOST": "https://bp.cryptolions.io",
+    "PORT": "443",
     "ALLOWABLE_MAX_PING": 150 // in ms. When ping is greater than this value, the node will be changed
   },
   "RESERVE_NODES": [
@@ -59,7 +59,7 @@
   // DEFAULT_P2P_PEERS: ' \
   // #p2p-peer-address = jungle.cryptolions.io:19876 \
   // ',
-  "ENABLE_CORS_SUPPORT": true,
+  "ENABLE_CORS_SUPPORT": false,
   "WHITE_LIST": [
     "localhost:3000",
     "localhost:3002",
