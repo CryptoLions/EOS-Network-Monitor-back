@@ -26,7 +26,6 @@ process.on('uncaughtException', (err) => {
 
 const app = express();
 const http = Server(app);
-const io = createSocketIO(http, {origins:'*'});
 
 const start = async () => {
   app.use(bugsnag.requestHandler);
@@ -36,6 +35,7 @@ const start = async () => {
   } else {
     app.use(cors());
   }
+  const io = createSocketIO(http, { origins: '*:*' });
   try {
     await connectToDb();
     const handlers = await initHandlers();
