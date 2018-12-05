@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
-const { API_PREFIX } = require('config');
+const { API_PREFIX, NODE_WITH_HISTORY } = require('config');
 const request = require('request-promise-native');
+const requestMain = require('request');
 const processAction = require('../../routines/handleBlock/processAction');
 
 const { BLOCK_CHART_PERIOD } = require('../../constants');
@@ -63,13 +64,15 @@ const init = ({ app, handlers }) => {
     }
   });
   app.get(`${API_PREFIX}/transactions/:txid/`, async (req, res) => {
-    try {
-      const { txid } = req.params;
+    const { txid } = req.params;
+    requestMain.get(`${NODE_WITH_HISTORY.HOST}:${NODE_WITH_HISTORY.PORT}/v1/history/get_transaction/${txid}`).pipe(res);
+    /*try {
       const tx = await TransactionModelV2.findOne({ txid });
       res.status(200).send(tx);
     } catch (e) {
       res.status(500).send('Internal Server Error');
-    }
+    }*/
+
   });
   app.get(`${API_PREFIX}/transactions/`, async (req, res) => {
     try {
