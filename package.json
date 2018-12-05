@@ -41,7 +41,7 @@
     "request-promise-native": "^1.0.5",
     "slack": "^11.0.1",
     "sleep": "^5.1.1",
-    "socket.io": "~2.1.1",
+    "socket.io": "2.1.1",
     "url-parse": "^1.4.3",
     "winston": "^3.0.0"
   },
