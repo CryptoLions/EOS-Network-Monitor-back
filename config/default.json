@@ -3,6 +3,7 @@
     "HOST": "http://localhost", // webaddress
     "PORT": "3002"
   },
+  "VERSION": "2.0",
   "NODE": {
     "HOST": "https://bp.cryptolions.io",
     "PORT": "443",
@@ -15,8 +16,8 @@
     }
   ],
   "NODE_WITH_HISTORY": {
-    "HOST": "http://history.cryptolions.io",
-    "PORT": "80"
+    "HOST": "https://history.cryptolions.io",
+    "PORT": "443"
   },
   "MONGODB": {
     "ADDRESS": "mongodb://localhost:27017/",

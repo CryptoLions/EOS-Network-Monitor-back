@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const { API_PREFIX, NODE_WITH_HISTORY } = require('config');
+const { API_PREFIX, NODE_WITH_HISTORY, VERSION } = require('config');
 const request = require('request-promise-native');
 const requestMain = require('request');
 const processAction = require('../../routines/handleBlock/processAction');
@@ -186,6 +186,9 @@ const init = ({ app, handlers }) => {
     } catch (e) {
       res.status(500).send('Internal Server Error');
     }
+  });
+  app.get(`${API_PREFIX}/version`, async (req, res) => {
+    res.json({ version: VERSION });
   });
 };
 
