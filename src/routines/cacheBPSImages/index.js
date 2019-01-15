@@ -35,10 +35,11 @@ async function downloadBPImage(url, filename){
     if (format === '.html'){
     	return false;
     }
+    let pathToFile = filename + format;
     await new Promise(resolve => {
-    	request(url).pipe(fs.createWriteStream(filename + format)).on('finish', resolve);
+    	request(url).pipe(fs.createWriteStream(pathToFile)).on('finish', resolve);
     });
-    await sharp(filename + format).resize(32, 32);
+    await sharp(pathToFile).resize(32, 32).toFile(filename + '_32' + format);
     return format;
 };
 
@@ -60,7 +61,7 @@ const cacheImages = async () => {
   			 if (elem && elem.bpData && elem.bpData.org && elem.bpData.org.branding && elem.bpData.org.branding.logo_256){
   			 	let format = await downloadBPImage(elem.bpData.org.branding.logo_256, `${bpsImgPath}${elem.name}`);
   			 	console.log(`${elem.name}${format}`);
-  			 	let logoPath = (format) ? `${bpsImg}${elem.name}${format}` : defaultImg;
+  			 	let logoPath = (format) ? `${bpsImg}${elem.name}_32${format}` : defaultImg;
   			 	try{
   			 		await ProducerModelV2.findOneAndUpdate({ name: elem.name }, { logoCached: logoPath });	
   			 	} catch(e) {
