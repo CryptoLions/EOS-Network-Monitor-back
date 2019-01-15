@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "appmetrics-dash": "^4.0.0",
+    "async": "^2.6.1",
     "body-parser": "^1.18.3",
     "bugsnag": "^2.4.3",
     "compression": "^1.7.2",
@@ -36,8 +37,10 @@
     "moment": "^2.22.2",
     "mongodb": "^3.0.5",
     "mongoose": "^5.2.4",
+    "path": "^0.12.7",
     "pidusage": "^2.0.17",
     "request": "^2.85.0",
+    "request-promise": "^4.2.2",
     "request-promise-native": "^1.0.5",
     "slack": "^11.0.1",
     "sleep": "^5.1.1",

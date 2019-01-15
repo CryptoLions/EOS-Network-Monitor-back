@@ -1,4 +1,5 @@
 const { CronJob } = require('cron');
+const fork = require('child_process').fork;
 const { connect: connectToDB } = require('../db');
 const { CALCULATE_REWARDS_FOR_DAY_INTERVAL } = require('../constants');
 const updateProducers = require('./updateProducers');
@@ -11,6 +12,7 @@ const resetMissedBlocksForDay = require('./resetMissedBlocksForDay');
 const resetProducedTimesForDay = require('./resetProducedTimesForDay');
 const fillBlockChartGaps = require('./fillBlockGaps');
 
+
 const startUpdateProducersRoutine = () => {
   updateProducers();
   return new CronJob({
@@ -19,7 +21,6 @@ const startUpdateProducersRoutine = () => {
     start: true,
   });
 };
-
 
 const startUpdateProducersFastRoutine = () =>
   new CronJob({
@@ -72,6 +73,28 @@ const startFillBlockChartGaps = () => {
   });
 };
 
+let PRODUCERS_PROCESS = 0;
+const startCacheImages = () => {
+  startProducersCacheDaemon();
+  return new CronJob({
+    cronTime: '0/30 * * * *', // every 30 minutes
+    onTick: () => {
+      if (!PRODUCERS_PROCESS){
+          startProducersCacheDaemon();
+      }
+    },
+    start: true,
+  });
+};
+
+function startProducersCacheDaemon(){
+        PRODUCERS_PROCESS += 1;
+        let forkProcess = fork(__dirname + '/cacheBPSImages/index.js');
+        forkProcess.on('close', res => {
+              console.log('\x1b[36m%s\x1b[0m', '====== Process Cache images end ======');
+              PRODUCERS_PROCESS = 0;
+        });
+}
 
 const startRoutine = async () => {
   await connectToDB();
@@ -93,6 +116,8 @@ const startRoutine = async () => {
   startResetMissedBlocksForDay();
 
   startResetProducedTimesForDay();
+
+  startCacheImages();
 };
 
 startRoutine();

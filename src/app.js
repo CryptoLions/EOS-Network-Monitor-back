@@ -31,6 +31,8 @@ const io = createSocketIO(http);
 const start = async () => {
   app.use(bugsnag.requestHandler);
   app.use(compression());
+  app.use(express.static(`${__dirname}/cache`));
+
   if (ENABLE_CORS_SUPPORT) {
     app.use(cors(corsOptionsDelegate(WHITE_LIST)));
   } else {
