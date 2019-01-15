@@ -60,7 +60,7 @@ const cacheImages = async () => {
   			 	console.log(`${elem.name}${format}`);
   			 	let logoPath = (format) ? `${bpsImg}${elem.name}${format}` : defaultImg;
   			 	try{
-  			 		await ProducerModelV2.findOneAndUpdate({ name: elem.name }, { logo: logoPath });	
+  			 		await ProducerModelV2.findOneAndUpdate({ name: elem.name }, { logoCached: logoPath });	
   			 	} catch(e) {
   			 		console.error('Save logo', e);
   			 	}

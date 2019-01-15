@@ -31,7 +31,7 @@ const getProducersInfo = async () => {
       produced
       tx_count
       name
-      logo
+      logoCached
       producer_key
       specialNodeEndpoint
       total_votes
