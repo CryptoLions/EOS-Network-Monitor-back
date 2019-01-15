@@ -68,6 +68,7 @@ const createStorage = () => {
         'checkedData2',
         'endpoints',
         'expectedIncomeData',
+        'logoCached',
         {
           totalVotes: 'total_votes',
           organizationUrl: 'url',

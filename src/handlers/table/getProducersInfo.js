@@ -31,7 +31,6 @@ const getProducersInfo = async () => {
       produced
       tx_count
       name
-      logoCached
       producer_key
       specialNodeEndpoint
       total_votes
@@ -60,7 +59,9 @@ const getProducersInfo = async () => {
       nodes.pub_key
       nodes.server_version
       nodes.server_version_string
-      nodes.bp`;
+      nodes.bp
+      logoCached
+      logo`;
   const producersFromDb = await ProducerModelV2
     .find({ isActive: true, total_votes: { $ne: null } })
     .sort({ total_votes: -1 })
