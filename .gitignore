@@ -8,4 +8,4 @@ node_modules
 *.log
 .DS_Store
 /db
-/src/cache/images/bps
+#/src/cache/images/bps
