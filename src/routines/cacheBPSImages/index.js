@@ -5,6 +5,7 @@ const rp 		= require("request-promise");
 const request 	= require('request')
 const path 		= require("path");
 const fs 		= require("fs");
+const sharp 	= require('sharp');
 
 const { connect: connectToDB } = require('../../db');
 const { ProducerModelV2 }  	   = require('../../db');
@@ -36,7 +37,8 @@ async function downloadBPImage(url, filename){
     }
     await new Promise(resolve => {
     	request(url).pipe(fs.createWriteStream(filename + format)).on('finish', resolve);
-    })
+    });
+    await sharp(filename + format).resize(32, 32);
     return format;
 };
 
