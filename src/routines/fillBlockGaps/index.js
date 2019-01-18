@@ -28,17 +28,17 @@ const getBlockFromChain = async (blockNum) => {
   const currentTs = Date.parse(current.timestamp);
   const previousTs = Date.parse(previous.timestamp);
   if (currentTs - previousTs >= SECOND) {
-    const transactionsNumber = current.transactions.length;
-    const actionsNumber = getActionsCount(current);
+    const transactionsNumber = getActionsCount(current).trxCounter;
+    const actionsNumber = getActionsCount(current).actionsCounter;
     const producedInSeconds = (currentTs - previousTs) / SECOND;
     blockTps = transactionsNumber / producedInSeconds;
     blockAps = actionsNumber / producedInSeconds;
   } else {
     previous.producedInSeconds = (Date.parse(previous.timestamp) - Date.parse(beforePrevious.timestamp)) / SECOND;
-    const previousTransactionsNumber = current.transactions.length;
+    const previousTransactionsNumber = getActionsCount(previous).trxCounter;
 
-    blockTps = current.transactions.length + (previousTransactionsNumber / previous.producedInSeconds / 2);
-    blockAps = getActionsCount(current) + (getActionsCount(previous) / previous.producedInSeconds / 2);
+    blockTps = getActionsCount(current).trxCounter + (previousTransactionsNumber / previous.producedInSeconds / 2);
+    blockAps = getActionsCount(current).actionsCounter + (getActionsCount(previous).actionsCounter / previous.producedInSeconds / 2);
   }
   return {
     blockNumber: blockNum,

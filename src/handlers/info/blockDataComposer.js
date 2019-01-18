@@ -20,9 +20,9 @@ const create = () => {
 
   const composeData = ({ block, max_tps = 0, max_aps = 0, max_tps_block = 0, max_aps_block = 0 }) => {
     const block_tps =
-      block.transactions.length + (blockStorage.previous.transactions ? blockStorage.previous.transactions.length : 0);
+      getActionsCount(block).trxCounter + (getActionsCount(blockStorage.previous).trxCounter ? getActionsCount(blockStorage.previous).trxCounter : 0);
     const block_aps =
-      getActionsCount(block) + (blockStorage.previous.transactions ? getActionsCount(blockStorage.previous) : 0);
+      getActionsCount(block).actionsCounter + (blockStorage.previous.transactions ? getActionsCount(blockStorage.previous).actionsCounter : 0);
 
     blockStorage.previous_live_aps[blockStorage.replacedNumber] = block_aps;
     blockStorage.previous_live_tps[blockStorage.replacedNumber] = block_tps;

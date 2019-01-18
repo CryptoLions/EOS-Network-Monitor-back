@@ -11,6 +11,10 @@
   },
   "RESERVE_NODES": [
     {
+      "HOST": "https://eu.eosdac.io",
+      "PORT": "443"
+    },
+    {
       "HOST": "http://api.eossweden.se",
       "PORT": "80"
     }

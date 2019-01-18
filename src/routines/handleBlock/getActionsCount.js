@@ -1,11 +1,17 @@
 const getActionsCount = block => {
+  let trxCounter = 0;
   if (block.transactions.length < 1) {
-    return 0;
+    	return { trxCounter : 0, actionsCounter: 0 };
   }
-  return block.transactions.reduce(
-    (result, transaction) => result + (transaction.trx.transaction ? transaction.trx.transaction.actions.length : 1),
-    0,
+  let actionsCounter = block.transactions.reduce(
+    (result, transaction) => {
+    	if (transaction.status !== 'expired'){
+    		trxCounter += 1;
+    	}
+    	return result + (transaction.trx.transaction ? transaction.trx.transaction.actions.length : 0)
+    }, 0,
   );
+  return { actionsCounter, trxCounter };
 };
 
 module.exports = getActionsCount;

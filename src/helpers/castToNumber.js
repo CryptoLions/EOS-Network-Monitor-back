@@ -6,5 +6,5 @@
  * @param value
  * @returns {number}
  */
-const castToNumber = value => (value ? value / 1 : 0);
+const castToNumber = value => !isNaN(Number(value)) ? value / 1 : 0
 module.exports = castToNumber;
