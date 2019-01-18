@@ -8,7 +8,7 @@ const getActionsCount = block => {
     	if (transaction.status !== 'expired'){
     		trxCounter += 1;
     	}
-    	return result + (transaction.trx.transaction ? transaction.trx.transaction.actions.length : 0)
+    	return result + ( (transaction.trx.transaction && transaction.trx.transaction.actions) ? transaction.trx.transaction.actions.length : 0)
     }, 0,
   );
   return { actionsCounter, trxCounter };
