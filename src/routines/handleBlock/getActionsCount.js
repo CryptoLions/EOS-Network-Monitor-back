@@ -1,6 +1,6 @@
 const getActionsCount = block => {
   let trxCounter = 0;
-  if (block && block.transactions && block.transactions.length < 1) {
+  if (!block || !block.transactions || block.transactions.length < 1) {
     	return { trxCounter : 0, actionsCounter: 0 };
   }
   let actionsCounter = block.transactions.reduce(
