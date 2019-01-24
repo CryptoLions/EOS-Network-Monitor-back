@@ -22,10 +22,8 @@ const create = () => {
     const {trxCounter: previousTransactionsNumber, actionsCounter: previousActionsNumber} = getActionsCount(blockStorage.previous);
     const {trxCounter: currentTransactionsNumber, actionsCounter: currentActionsNumber} = getActionsCount(block);
     
-    const block_tps =
-      currentTransactionsNumber + (previousTransactionsNumber ? previousTransactionsNumber : 0);
-    const block_aps =
-      currentActionsNumber + (blockStorage.previous.transactions ? previousActionsNumber : 0);
+    const block_tps = currentTransactionsNumber + (previousTransactionsNumber ? previousTransactionsNumber : 0);
+    const block_aps = currentActionsNumber + (blockStorage.previous.transactions ? previousActionsNumber : 0);
 
     blockStorage.previous_live_aps[blockStorage.replacedNumber] = block_aps;
     blockStorage.previous_live_tps[blockStorage.replacedNumber] = block_tps;
