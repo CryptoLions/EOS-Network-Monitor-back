@@ -37,13 +37,14 @@ const findMaxInfo = async ({ current = { transactions: [] }, previous, max_tps =
       const beforePrevious = await eosApi.getBlock(previous.block_num - 1);
       previous.producedInSeconds = (Date.parse(previous.timestamp) - Date.parse(beforePrevious.timestamp)) / SECOND;
     }
+
     const {trxCounter: previousTransactionsNumber, actionsCounter: previousActionsNumber} = getActionsCount(previous);
     const {trxCounter: currentTransactionsNumber, actionsCounter: currentActionsNumber} = getActionsCount(current);
     
     live_tps =  currentTransactionsNumber + (previousTransactionsNumber / previous.producedInSeconds / 2);
     live_aps = currentActionsNumber + (previousActionsNumber / previous.producedInSeconds / 2);
 
-    console.log('\x1b[36m%s\x1b[0m',`max TPS: ${live_tps}, BLOCK: ${current.block_num}, prevTx = ${previousTransactionsNumber}, currTx = ${currentTransactionsNumber}, producedInSeconds = ${previous.producedInSeconds}`);
+    console.log('\x1b[36m%s\x1b[0m',`max TPS: ${live_tps}, BLOCK: ${current.block_num}, prevTx = ${previousTransactionsNumber}, currTx = ${currentTransactionsNumber}, prevBlocksDiff = ${previous.producedInSeconds}`);
   }
   live_aps = live_aps < live_tps ? live_tps : live_aps;
   const res = {};
