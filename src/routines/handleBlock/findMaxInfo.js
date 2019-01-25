@@ -20,16 +20,18 @@ const findMaxInfo = async ({ current = { transactions: [] }, previous, max_tps =
   }
   let live_tps;
   let live_aps;
+  let live_tps_1 = 0;
+  let live_aps_1 = 0;
   // the block was produced in one second or more
   if (currentTs - previousTs >= SECOND) {
     const { trxCounter: transactionsNumber, actionsCounter: actionsNumber} = getActionsCount(current);
     const producedInSeconds = (currentTs - previousTs) / SECOND;
     
-    live_tps = transactionsNumber / producedInSeconds;
-    live_aps = actionsNumber / producedInSeconds;
+    live_tps_1 = transactionsNumber / producedInSeconds;
+    live_aps_1 = actionsNumber / producedInSeconds;
 
     console.log('\x1b[36m%s\x1b[0m',`max TPS: ${live_tps}, BLOCK: ${current.block_num}, transactionsNumber = ${transactionsNumber}, actionsNumber = ${actionsNumber}, ${producedInSeconds}`);
-  } else {
+  } // else {
     // the block was produced in half of second
     // find number of transactions for 0.5 sec for previous block
     if (!previous.producedInSeconds) {
@@ -37,15 +39,19 @@ const findMaxInfo = async ({ current = { transactions: [] }, previous, max_tps =
       const beforePrevious = await eosApi.getBlock(previous.block_num - 1);
       previous.producedInSeconds = (Date.parse(previous.timestamp) - Date.parse(beforePrevious.timestamp)) / SECOND;
     }
+    let currProducedInSec = (Date.parse(current.timestamp) - Date.parse(previous.timestamp)) / SECOND;
 
-    const {trxCounter: previousTransactionsNumber, actionsCounter: previousActionsNumber} = getActionsCount(previous);
-    const {trxCounter: currentTransactionsNumber, actionsCounter: currentActionsNumber} = getActionsCount(current);
+    const {trxCounter: prevTrxNumber, actionsCounter: prevActNumber} = getActionsCount(previous);
+    const {trxCounter: currTrxNumber, actionsCounter: currActNumber} = getActionsCount(current);
     
-    live_tps =  currentTransactionsNumber + (previousTransactionsNumber / previous.producedInSeconds / 2);
-    live_aps = currentActionsNumber + (previousActionsNumber / previous.producedInSeconds / 2);
+    let live_tps_2 =  Math.floor(currTrxNumber / currProducedInSec / 2 + prevTrxNumber / previous.producedInSeconds / 2);
+    let live_aps_2 =  Math.floor(currActNumber / currProducedInSec / 2 + prevActNumber / previous.producedInSeconds / 2);
 
-    console.log('\x1b[36m%s\x1b[0m',`max TPS: ${live_tps}, BLOCK: ${current.block_num}, prevTx = ${previousTransactionsNumber}, currTx = ${currentTransactionsNumber}, prevBlocksDiff = ${previous.producedInSeconds}`);
-  }
+    live_tps = (live_tps_1 > live_tps_2) ? live_tps_1: live_tps_2;
+    live_aps = (live_aps_1 > live_aps_2) ? live_aps_1: live_aps_2;
+
+    console.log('\x1b[36m%s\x1b[0m',`max TPS: ${live_tps}, BLOCK: ${current.block_num}, prevTx = ${prevTrxNumber}, currTx = ${currTrxNumber}, prevBlocksDiff = ${previous.producedInSeconds}`);
+  //}
   live_aps = live_aps < live_tps ? live_tps : live_aps;
   const res = {};
   if (live_tps > max_tps) {

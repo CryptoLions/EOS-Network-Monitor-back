@@ -100,8 +100,8 @@ describe('Testing of max TPS APS', () => {
         });
     });
 
-   let testTPS_5 = 101;
-   let testAPS_5 = testTPS_5 * 10;
+   let testTPS_5 = 113;
+   let testAPS_5 = 1133;
    describe (`Test 5, Expected: max TPS ${testTPS_5}, max APS: ${testAPS_5}`, () => {
         it('done', async () => {
             let { maxTPS, maxAPS } = await findMax({tp1: 0, tp2: 1000, tp3: 1500, tp4: 3000, trx1: 0, trx2: 2, trx3: 100, trx4: 40});
