@@ -5,27 +5,27 @@
   },
   "VERSION": "2.0",
   "NODE": {
-    "HOST": "https://bp.cryptolions.io",
+    "HOST": "https://api.xec.cryptolions.io",
     "PORT": "443",
     "ALLOWABLE_MAX_PING": 150 // in ms. When ping is greater than this value, the node will be changed
   },
   "RESERVE_NODES": [
     {
-      "HOST": "https://eu.eosdac.io",
+      "HOST": "https://api.xec.cryptolions.io",
       "PORT": "443"
     },
     {
-      "HOST": "http://api.eossweden.se",
-      "PORT": "80"
+      "HOST": "https://api.xec.cryptolions.io",
+      "PORT": "443"
     }
   ],
   "NODE_WITH_HISTORY": {
-    "HOST": "https://history.cryptolions.io",
+    "HOST": "https://api.xec.cryptolions.io",
     "PORT": "443"
   },
   "MONGODB": {
     "ADDRESS": "mongodb://localhost:27017/",
-    "DB_NAME": "MainNet",
+    "DB_NAME": "XECNet",
     "AUTH_IS_REQUIRED": false,
     "AUTH_SOURCE": "admin",
     "USER": "eosdev23",
@@ -38,6 +38,10 @@
     "FAUCET_SUME": 1000000,
     "FAUCET_SUME_TOKEN1": "100.0000 EOS",
     "FAUCET_SUME_TOKEN2": "100.0000 JUNGLE"
+  },
+  "BLACKLIST": {
+    "scope": "eosio",
+    "table": "userres"
   },
   "TELEGRAM": {
     // TELEGRAM_API

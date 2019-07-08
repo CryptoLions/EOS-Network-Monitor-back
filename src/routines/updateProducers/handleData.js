@@ -1,5 +1,7 @@
 const { omit } = require('lodash');
 
+const { BLACKLIST } = require('config');
+
 const getBPjson = require('./getBPjson');
 const {
   castToInt,
@@ -43,9 +45,9 @@ const handleData = async producers => {
   PRODUCERS_WITHOUT_URL = [];
   PRODUCERS_WITHOUT_BP_JSON = [];
   const { rows: blackListaHahes } = await eosApi.getTableRows({
-    scope: 'theblacklist',
-    code: 'theblacklist',
-    table: 'producerhash',
+    scope: BLACKLIST.scope,
+    code: BLACKLIST.scope,
+    table: BLACKLIST.table,
     json: true,
     limit: 10000,
   });
