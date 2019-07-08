@@ -20,11 +20,11 @@ const setRewardsToZero = async () => {
 };
 
 const getInflation = async () => {
-  const systemData = await api.getCurrencyStats({ symbol: 'EOS', code: 'eosio.token' });
-  if (!systemData.EOS || !systemData.EOS.supply){
+  const systemData = await api.getCurrencyStats({ symbol: 'XEC', code: 'eosio.token' });
+  if (!systemData.XEC || !systemData.XEC.supply){
       return 0;
   }
-  const totalSupply = castToInt(systemData.EOS.supply.split(' ')[0]);
+  const totalSupply = castToInt(systemData.XEC.supply.split(' ')[0]);
   return totalSupply / 100 / 365;
 };
 
