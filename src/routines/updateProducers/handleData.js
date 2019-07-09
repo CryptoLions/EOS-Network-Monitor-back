@@ -143,7 +143,7 @@ const handleData = async producers => {
   list of producers without URL: ${PRODUCERS_WITHOUT_URL.length}
   ${PRODUCERS_WITHOUT_URL}
   --------------------------------------------------------
-  list of producers without bp.json (can not fetch any data from the provided url): ${PRODUCERS_WITHOUT_BP_JSON.length}
+  list of producers without xec.json (can not fetch any data from the provided url): ${PRODUCERS_WITHOUT_BP_JSON.length}
   ${PRODUCERS_WITHOUT_BP_JSON}
 `);
 

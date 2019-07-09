@@ -16,7 +16,7 @@ const api = createEosApi();
 
 const setRewardsToZero = async () => {
   await ProducerModelV2.updateMany({}, { $set: { rewards_per_day: 0, produced_per_day: 0 } }).exec();
-  await StateModelV2.update({ id: 1 }, { $set: { lastRewardsSetToZeroAt: new Date(), produced_per_day: 0 } }).exec();
+  await StateModelV2.updateOne({ id: 1 }, { $set: { lastRewardsSetToZeroAt: new Date(), produced_per_day: 0 } }).exec();
 };
 
 const getInflation = async () => {

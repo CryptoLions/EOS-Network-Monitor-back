@@ -28,13 +28,13 @@ const handleBlock = async () => {
     block.producedInSeconds = (Date.parse(block.timestamp) - Date.parse(previous.timestamp)) / SECOND;
     previous = block;
     if (max) {
-      await StateModelV2.update({ id: 1 }, { $set: max }).exec();
+      await StateModelV2.updateOne({ id: 1 }, { $set: max }).exec();
     }
     const data = await extractData(block);
     await saveBlockData({ transactions: data, producer: block.producer });
     logInfo(`handleBlock ${lastHandledBlock} ${Date.now() - timeMark} ms`);
 
-    await StateModelV2.update({ id: 1 }, { $inc: { lastHandledBlock: 1 } });
+    await StateModelV2.updateOne({ id: 1 }, { $inc: { lastHandledBlock: 1 } });
     handleBlock();
   } catch (e) {
     logError(e);

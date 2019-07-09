@@ -67,7 +67,7 @@ const getProducersInfo = async () => {
     .sort({ total_votes: -1 })
     .select(fields)
     .exec();
-  return producersFromDb.map(p => Object.assign(
+  let result = producersFromDb.map(p => Object.assign(
     Object.create(null),
     {
       ...pickAs(p._doc, [
@@ -82,6 +82,7 @@ const getProducersInfo = async () => {
       tx_count: p.checkedData2.tx_count,
     },
   ));
+  return result;
 };
 
 module.exports = getProducersInfo;

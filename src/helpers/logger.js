@@ -31,7 +31,8 @@ const createLoggerWrapper = () => ({
   info: (data, { send = false } = {}) => {
     if (send) {
       bugsnag.notify(data, { severity: 'info' });
-      slackNotifier.notify({ isError: false, message: data });
+      console.error(data);
+      //slackNotifier.notify({ isError: false, message: data });
     }
     if (LOG_CONSOLE || send) {
       console.log(data);

@@ -2,15 +2,16 @@ const crypto = require('crypto');
 const difference = require('lodash/difference');
 const uniq = require('lodash/uniq');
 const { createEosApi, logError } = require('../../helpers');
+const { BLACKLIST } = require('config');
 
 const eosApi = createEosApi();
 
 const getBlackList = async () => {
   try {
     const { rows: data } = await eosApi.getTableRows({
-      scope: 'theblacklist',
-      code: 'theblacklist',
-      table: 'theblacklist',
+      scope: BLACKLIST.scope,
+      code: BLACKLIST.scope,
+      table: BLACKLIST.table,
       json: true,
       limit: 10000,
     });

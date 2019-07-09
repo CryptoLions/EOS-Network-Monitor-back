@@ -82,7 +82,7 @@ const initProducerHandler = async () => {
   const checkProducers = async () => {
     try {
       const producers = await getProducersInfo();
-      //  console.log(producers[0])
+      //console.log(producers[0])
       storage.updateProducers(producers);
       const nextProducersOrder = (await storage.getAll()).map(p => p.name);
       const orderIsChanged = nextProducersOrder.find((e, i) => e !== previousProducersOrder[i]);
@@ -106,9 +106,9 @@ const initProducerHandler = async () => {
       const slicedProducers = producersType === 'top'
         ? producersListForNodeChecking.slice(0, 21)
         : producersListForNodeChecking.slice(21);
-
+      
       const producers = slicedProducers.filter(e => e.isNode);
-
+      
       if (!producers.length) {
         return;
       }

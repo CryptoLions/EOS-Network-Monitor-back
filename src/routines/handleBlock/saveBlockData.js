@@ -12,7 +12,7 @@ const { error: logError } = createLogger();
 
 const saveBlockData = async ({ transactions, producer }) => {
   if (!transactions || !transactions.length) {
-    await StateModelV2.update(
+    await StateModelV2.updateOne(
       { id: 1 },
       { $inc: { 'checkedData2.producedBlocks': 1 } },
     ).exec();
@@ -30,7 +30,7 @@ const saveBlockData = async ({ transactions, producer }) => {
 
   // update total_txblocks_count
   await StateModelV2
-    .update(
+    .updateOne(
       { id: 1 },
       { $inc: {
         total_txblocks_count: 1,

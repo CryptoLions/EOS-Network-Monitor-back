@@ -6,9 +6,9 @@ const {
 const { castToInt, pickAs } = require('../../helpers');
 
 const sort = rows => {
-  const result = [...rows].filter(e => e.totalVotes);
-  result.sort((a, b) => castToInt(b.totalVotes) - a.totalVotes);
-  return result;
+  //let result = [...rows].filter(e => e.totalVotes);
+  rows.sort((a, b) => castToInt(b.totalVotes) - a.totalVotes);
+  return rows;
 };
 
 const createStorage = () => {
@@ -76,7 +76,6 @@ const createStorage = () => {
         },
       ]))
       .filter(p => !BLACK_PRODUCERS_LIST.find(b => b.key === p.key));
-
     const newStorage = {};
     sort(transformedProducers).forEach(e => {
       newStorage[e.name] = {

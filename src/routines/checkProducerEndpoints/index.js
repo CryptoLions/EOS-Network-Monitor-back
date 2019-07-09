@@ -76,7 +76,7 @@ module.exports = async () => {
         server_version_string: e.server_version_string,
       }));
       nodes.forEach(async n => {
-        ProducerModelV2.update(
+        ProducerModelV2.updateOne(
           { _id: p._id, 'nodes._id': n._id },
           { $set: {
             'nodes.$.server_version': n.server_version,
