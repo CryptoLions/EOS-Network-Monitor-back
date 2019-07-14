@@ -59,8 +59,13 @@ const cacheImages = async () => {
 		}
 		asyncForEach(result, async (elem, index) => {
   			 if (elem && elem.bpData && elem.bpData.org && elem.bpData.org.branding && elem.bpData.org.branding.logo_256){
-  			 	let format = await downloadBPImage(elem.bpData.org.branding.logo_256, `${bpsImgPath}${elem.name}`);
-  			 	console.log(`${elem.name}${format}`);
+  			 	let format;
+  			 	try {
+					format = await downloadBPImage(elem.bpData.org.branding.logo_256, `${bpsImgPath}${elem.name}`);
+  			 	} catch(e) {
+  			 		console.error(e);
+  			 	}
+  			 	console.log(`============ ${elem.name}${format}`);
   			 	let logoPath = (format) ? `${bpsImg}${elem.name}_32${format}` : defaultImg;
   			 	try{
   			 		await ProducerModelV2.findOneAndUpdate({ name: elem.name }, { logoCached: logoPath });	
