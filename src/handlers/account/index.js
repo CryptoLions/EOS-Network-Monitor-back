@@ -30,7 +30,7 @@ const initAccountHandler = () => ({
       }
       const account = await eosApi.getAccount({ account_name });
       const balances = await getBalancesFor(account_name);
-      return { ...account, balance: (balances && balances[0]) || '0.0 EOS', balances: balances.slice(1) };
+      return { ...account, balance: (balances && balances[0]) || '0.0 LNX', balances: balances.slice(1) };
     } catch (e) {
       logError(e);
       return {};
