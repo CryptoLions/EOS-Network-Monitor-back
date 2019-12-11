@@ -4,7 +4,7 @@ const { UPDATE_TRANSACTIONS: { DEFAULT_VALUE } } = require('config');
 const State = new Schema({
   id: Number,
   telegramUpdatedAt: Date,
-  lastHandledBlock: { type: Number, default: 0 },
+  lastHandledBlock: { type: Number, default: 3 },
   max_aps: { type: Number, default: 0 },
   max_tps: { type: Number, default: 0 },
   max_tps_block: { type: Number, default: 0 },

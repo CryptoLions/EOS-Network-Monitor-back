@@ -81,7 +81,7 @@ const calculateRewards = async () => {
 
   const producersFromDB = await ProducerModelV2
     .find({})
-    .sort({ total_votes: -1 })
+    .sort({ total_votes: -1, name: 1 })
     .select('produced_per_day name unpaid_blocks total_votes expectedIncomeData');
 
   const producers = producersFromDB

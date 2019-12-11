@@ -50,7 +50,7 @@ const cacheImages = async () => {
 		return console.error('DB connection', e);
 	}
 
-	ProducerModelV2.find().sort({ total_votes: -1 }).exec((err, result) => {
+	ProducerModelV2.find().sort({ total_votes: -1, name: 1 }).exec((err, result) => {
 		if (err){
 			return console.error(err);
 		}

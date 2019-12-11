@@ -45,7 +45,7 @@ module.exports = async () => {
     const tsStart = Date.now();
     const producers = await ProducerModelV2
       .find({})
-      .sort({ total_votes: -1 })
+      .sort({ total_votes: -1, name: 1 })
       .select('_id name url nodes._id nodes.http_server_address nodes.https_server_address');
 
     await Promise.all(producers.map(async p => {
