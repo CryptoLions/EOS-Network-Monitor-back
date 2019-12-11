@@ -102,7 +102,7 @@ const init = ({ app, handlers }) => {
           [`nodes.${p2pFieldName}`]: { $ne: null },
         } },
         { $group: { _id: '$name', p2p: { $push: `$nodes.${p2pFieldName}` }, total_votes: { $first: '$total_votes' } } },
-        { $sort: { total_votes: -1 } },
+        { $sort: { total_votes: -1, name: 1 } },
         { $project: { name: '$_id', p2p: 1, _id: 0 } },
       ];
       const endpoints = await ProducerModelV2.aggregate(pipline);

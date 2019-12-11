@@ -64,7 +64,7 @@ const getProducersInfo = async () => {
       logo`;
   const producersFromDb = await ProducerModelV2
     .find({ isActive: true, total_votes: { $ne: null } })
-    .sort({ total_votes: -1 })
+    .sort({ total_votes: -1, name: 1 })
     .select(fields)
     .exec();
   let result = producersFromDb.map(p => Object.assign(
